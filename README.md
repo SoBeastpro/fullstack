@@ -1,3 +1,3 @@
 # Мой первый проект 
 ## Проект Этот репозиторий является каркасом для будущего веб-приложения. 
-пше ## Ссылки - [Публичная страница на GitHub Pages](https://SoBeastpro.github.io/fullstack/)
+## Ссылки - [Публичная страница на GitHub Pages](https://SoBeastpro.github.io/fullstack/)
