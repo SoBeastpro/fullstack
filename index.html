@@ -1,53 +1,92 @@
- <!DOCTYPE html> 
-<html lang="ru"> 
-<head> 
-    <meta property="og:type" content="website"> 
-    <meta property="og:title" content="Главная страница">  
-    <meta property="og:image" content="https://png.pngtree.com/png-clipart/20190705/original/pngtree-vector-information-icon-png-image_4186944.jpg"> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Главная - Первый сайтик</title> 
-    <meta name="description" content="Краткое описание главной страницы вашего сайта"> 
-    <link rel="icon" href="../assets/favicon.ico" type="image/x-icon">
-</head> 
-<body> 
-    <!-- Шапка сайта --> 
-    <header> 
-        <a href="/">Самый современный сайт</a> 
-        <!-- Главное меню навигации --> 
-        <nav> 
-            <ul> 
-                <li><a href="index.html">Главная</a></li> 
-                <li><a href="about.html">О нас</a></li> 
-                <li><a href="contacts.html">Контакты</a></li> 
-            </ul> 
-        </nav> 
-    </header> 
-    <!-- Уникальное основное содержимое страницы --> 
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+    <script src="main.js" defer></script>
+
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Главная страница">
+    <meta property="og:image"
+        content="https://png.pngtree.com/png-clipart/20190705/original/pngtree-vector-information-icon-png-image_4186944.jpg">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Главная - Первый сайтик</title>
+    <meta name="description" content="Краткое описание главной страницы вашего сайта">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+</head>
+
+<body>
+    <!-- Шапка сайта -->
+    <header>
+        <a href="assets/favicon.ico">Самый современный сайт</a>
+        <!-- Главное меню навигации -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="about.html">О нас</a></li>
+                <li><a href="contacts.html">Контакты</a></li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Уникальное основное содержимое страницы -->
     <main>
-        <h1>шлюхам добро пожаловать  на наш сайт!</h1> 
-        <!-- Секция 1 с якорем --> 
-        <section id="services"> 
-            <h2>Наши услуги</h2> 
-            <p>Помогаем в установке гита</p> 
-            <a href="contacts.html">Связаться с нами</a> <!-- Якорная ссылка внутри страницы --> 
-        </section> 
-        <!-- Секция 2 с якорем --> 
-        <section id="portfolio"> 
-            <h2>Портфолио</h2> 
-            <p>Мы только учимся и этот сайт является первой работой</p> 
-        </section> 
-        <!-- Секция 3 с якорем --> 
-        <section id="contacts"> 
-            <h2>Контактная информация</h2> 
-            <p>Наши контакты...</p> 
-    </main> 
-            <a href="contacts.html">Подробнее</a> <!-- Ссылка на отдельную страницу --> 
-        </section> 
-    <!-- Подвал сайта --> 
-    <footer> 
-        <p>&copy; 2025 Самый лучший сайт. Все права защищены.</p> 
-        <p>Телефон: +7 (960) 319-60-00</p> 
-    </footer> 
-</body> 
-</html> 
+        <h1>Добро пожаловать на наш сайт!</h1>
+        <!-- Секция 1 с якорем -->
+        <section id="services">
+            <h2>Наши услуги</h2>
+            <p>Помогаем в установке гита</p>
+            <a href="contacts.html">Связаться с нами</a> <!-- Якорная ссылка внутри страницы -->
+        </section>
+        <!-- Секция 2 с якорем -->
+        <section id="portfolio">
+            <h2>Портфолио</h2>
+            <p>Мы только учимся и этот сайт является первой работой</p>
+        </section>
+        <!-- Секция 3 с якорем -->
+        <section id="contacts">
+            <h2>Контактная информация</h2>
+            <p>Наши контакты...</p>
+    </main>
+    <a href="contacts.html">Подробнее</a> <!-- Ссылка на отдельную страницу -->
+    </section>
+    <!-- Подвал сайта -->
+    <footer>
+        <p>&copy; 2025 Самый лучший сайт. Все права защищены.</p>
+        <p>Телефон: +7 (960) 319-60-00</p>
+    </footer>
+    <!-- Кнопка открытия модалки -->
+    <button id="openDialog" type="button">Написать нам</button>
+    <!-- Модалка с формой -->
+    <dialog id="contactDialog" aria-labelledby="dialogTitle">
+        <h2 id="dialogTitle">Обратная связь</h2>
+        <form id="contactForm" method="dialog" novalidate>
+            <label for="name">Имя</label>
+            <input id="name" name="name" type="text" required minlength="2" autocomplete="given-name">
+            <label for="email">E-mail</label>
+            <input id="email" name="email" type="email" required autocomplete="email">
+            <label for="phone">Телефон</label>
+            <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" aria-describedby="phoneHelp"
+                placeholder="+7 (___) ___-__-__" required pattern="^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$">
+            <small id="phoneHelp">Формат: +7 (900) 000-00-00</small>
+            <label for="date">Дата</label>
+            <input id="date" name="date" type="date">
+            <label for="topic">Тема</label>
+            <select id="topic" name="topic" required>
+                <option value="">Выберите тему</option>
+                <option>Вопрос</option>
+                <option>Заказ</option>
+                <option>Просто скучно</option>
+            </select>
+            <label for="message">Сообщение</label>
+            <textarea id="message" name="message" rows="4" required></textarea>
+            <div class="form-actions">
+                <button type="button" id="closeDialog">Закрыть</button>
+                <button type="submit">Отправить</button>
+            </div>
+        </form>
+    </dialog>
+
+</body>
+
+</html>
