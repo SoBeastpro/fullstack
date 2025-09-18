@@ -3,10 +3,71 @@
     box-sizing: border-box;
 }
 
+/* Reset-минимум — подробнее в 1.8 */
+* {
+    box-sizing: border-box;
+}
+
+/* Герой-секция: затемняющий градиент поверх фонового изображения */
+.hero {
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, .55), rgba(0, 0, 0, .15)),
+        /* оверлей для 
+контраста текста */
+        url("img/hero-1920.jpg") center/cover no-repeat;
+    /* картинка 
+как декор */
+    color: #fff;
+    padding: clamp(2rem, 6vw, 6rem) 1rem;
+    /* адаптивные 
+отступы */
+    border-radius: var(--radius);
+}
+
+/* Центровка и ограничение ширины контейнера */
+.container {
+    width: min(100% - 2*var(--space-4), 1120px);
+    margin-inline: auto;
+}
+
+/* Вертикальные отступы секций по токенам */
+.section {
+    padding-block: var(--space-5);
+}
+
+.section__title {
+    margin: 0 0 var(--space-3);
+}
+
+
 html,
 body {
     margin: 0;
     padding: 0;
+}
+
+body {
+    background: var(--color-bg);
+    color: var(--color-fg);
+    font-family: var(--font-body);
+    line-height: 1.5;
+}
+
+/* Медиа не «выпрыгивают» из контейнеров */
+img,
+video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Форм-контролы наследуют шрифт и цвет */
+button,
+input,
+select,
+textarea {
+    font: inherit;
+    color: inherit;
 }
 
 body {
@@ -73,11 +134,6 @@ dialog::backdrop {
     background: rgba(0, 0, 0, 0.5);
 }
 
-.form-actions {
-    display: flex;
-    gap: .5rem;
-    margin-top: 1rem;
-}
 /* Стили для сообщения об успешной отправке */
 #successMessage {
     background: #d4edda;
@@ -93,8 +149,15 @@ dialog::backdrop {
 
 /* Анимация появления */
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 /* Адаптивность для модального окна */
@@ -113,4 +176,218 @@ dialog {
 .form-actions button {
     flex: 1;
     max-width: none;
+}
+
+:root {
+    /* Палитра */
+    --color-bg: #ffffff;
+    --color-fg: #0b0b0b;
+    --color-muted: #666;
+    --color-primary: #0a84ff;
+    --color-danger: #b00020;
+    /* Типографика и размеры */
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space: 5:40px;
+    /* Скругления и тени */
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 8px 24px rgba(0, 0, 0, .08);
+}
+
+:root {
+    color-scheme: light;
+}
+
+/* Светлые скроллбары/контролы по 
+умолчанию */
+body.theme-dark {
+    color-scheme: dark;
+}
+
+/* Тёмные — при активной теме */
+
+/* Тёмная тема: переопределяем только значения токенов */
+body.theme-dark {
+    --color-bg: #0b0b0b;
+    --color-fg: #f5f5f5;
+    --color-muted: #aaa;
+    --color-primary: #6aa2ff;
+}
+
+/* ===== HEADER & NAVIGATION (БЭМ) ===== */
+.site-header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--space-3) var(--space-4);
+    background-color: var(--color-bg);
+    border-bottom: 1px solid var(--color-muted);
+    position: relative;
+}
+
+.site-header__logo {
+    font-weight: bold;
+    font-size: 1.25rem;
+    text-decoration: none;
+    color: var(--color-fg);
+    padding: var(--space-2);
+    border-radius: var(--radius);
+}
+
+.site-header__logo:hover,
+.site-header__logo:focus-visible {
+    background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
+    outline: none;
+}
+
+/* Навигация */
+.site-nav__list {
+    display: flex;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.site-nav__item {
+    margin: 0;
+}
+
+.site-nav__link {
+    display: block;
+    padding: var(--space-2) var(--space-3);
+    text-decoration: none;
+    color: var(--color-muted);
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+/* Состояния наведения и фокуса */
+.site-nav__link:hover {
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
+}
+
+.site-nav__link:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+    color: var(--color-primary);
+}
+
+/* Активный пункт меню (aria-current="page") */
+.site-nav__link[aria-current="page"] {
+    color: var(--color-primary);
+    background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
+    font-weight: 600;
+}
+
+/* Адаптивность для мобильных */
+@media (max-width: 600px) {
+    .site-header {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .site-nav__list {
+        flex-direction: column;
+        width: 100%;
+        gap: var(--space-1);
+    }
+
+    .site-nav__link {
+        text-align: center;
+    }
+}
+
+/* ===== BREADCRUMBS (Хлебные крошки) ===== */
+.breadcrumbs {
+    padding: var(--space-3) 0;
+    margin-bottom: var(--space-4);
+}
+
+.breadcrumbs__list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-2);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.breadcrumbs__item {
+    display: flex;
+    align-items: center;
+    gap: var(--space-2);
+}
+
+.breadcrumbs__item::after {
+    content: "→";
+    color: var(--color-muted);
+}
+
+.breadcrumbs__item:last-child::after {
+    content: none;
+}
+
+.breadcrumbs__link {
+    color: var(--color-primary);
+    text-decoration: none;
+}
+
+.breadcrumbs__link:hover,
+.breadcrumbs__link:focus-visible {
+    text-decoration: underline;
+    outline: none;
+}
+
+.breadcrumbs__current {
+    color: var(--color-muted);
+}
+
+/* ===== SMOOTH SCROLL & TARGET STYLES ===== */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+    /* Отступ для фиксированного header */
+}
+
+/* Стиль для целевого элемента при якорной навигации */
+section:target {
+    animation: target-fade 1.5s ease;
+    background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
+    border-radius: var(--radius);
+}
+
+@keyframes target-fade {
+    0% {
+        background-color: color-mix(in srgb, var(--color-primary) 20%, transparent);
+    }
+
+    100% {
+        background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
+    }
+}
+
+/* Стили для якорных ссылок внутри страницы */
+.page-link {
+    display: inline-block;
+    margin-top: var(--space-2);
+    padding: var(--space-2) var(--space-3);
+    background-color: var(--color-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: var(--radius);
+    transition: all 0.2s ease;
+}
+
+.page-link:hover,
+.page-link:focus-visible {
+    background-color: color-mix(in srgb, var(--color-primary) 20%, black);
+    outline: none;
+    transform: translateY(-1px);
 }
