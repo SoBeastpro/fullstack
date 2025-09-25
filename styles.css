@@ -1,44 +1,33 @@
-/* БАЗА: читаемость и предсказуемость размеров */
+/* ===== CSS VARIABLES (Дизайн-токены) ===== */
+:root {
+    color-scheme: light;
+
+    /* Палитра */
+    --color-bg: #ffffff;
+    --color-fg: #0b0b0b;
+    --color-muted: #666;
+    --color-primary: #0a84ff;
+    --color-danger: #b00020;
+
+    /* Типографика */
+    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+
+    /* Размеры */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 16px;
+    --space-4: 24px;
+    --space-5: 40px;
+
+    /* Скругления */
+    --radius: 12px;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.08), 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* ===== BASE STYLES ===== */
 * {
     box-sizing: border-box;
 }
-
-/* Reset-минимум — подробнее в 1.8 */
-* {
-    box-sizing: border-box;
-}
-
-/* Герой-секция: затемняющий градиент поверх фонового изображения */
-.hero {
-    background:
-        linear-gradient(to top, rgba(0, 0, 0, .55), rgba(0, 0, 0, .15)),
-        /* оверлей для 
-контраста текста */
-        url("img/hero-1920.jpg") center/cover no-repeat;
-    /* картинка 
-как декор */
-    color: #fff;
-    padding: clamp(2rem, 6vw, 6rem) 1rem;
-    /* адаптивные 
-отступы */
-    border-radius: var(--radius);
-}
-
-/* Центровка и ограничение ширины контейнера */
-.container {
-    width: min(100% - 2*var(--space-4), 1120px);
-    margin-inline: auto;
-}
-
-/* Вертикальные отступы секций по токенам */
-.section {
-    padding-block: var(--space-5);
-}
-
-.section__title {
-    margin: 0 0 var(--space-3);
-}
-
 
 html,
 body {
@@ -53,7 +42,13 @@ body {
     line-height: 1.5;
 }
 
-/* Медиа не «выпрыгивают» из контейнеров */
+/* Плавная прокрутка для якорных ссылок */
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 2rem;
+}
+
+/* Медиа-элементы */
 img,
 video {
     max-width: 100%;
@@ -61,7 +56,7 @@ video {
     display: block;
 }
 
-/* Форм-контролы наследуют шрифт и цвет */
+/* Наследование для форм */
 button,
 input,
 select,
@@ -70,154 +65,9 @@ textarea {
     color: inherit;
 }
 
-body {
-    font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial,
-        sans-serif;
-    line-height: 1.5;
-}
+/* ===== COMPONENTS ===== */
 
-/* Формы: размеры, отступы, визуальный порядок */
-label {
-    display: block;
-    margin: 0.5rem 0 0.25rem;
-}
-
-input,
-select,
-textarea,
-button {
-    width: 100%;
-    max-width: 480px;
-    padding: .5rem .75rem;
-    border: 1px solid #c8c8c8;
-    border-radius: 8px;
-    background: #fff;
-}
-
-/* Кнопка по умолчанию */
-button,
-[type="submit"] {
-    background: #0a84ff;
-    color: #fff;
-    border: none;
-    cursor: pointer;
-}
-
-/* Состояния: клавиатура/мышь/ошибки */
-:where(input, select, textarea, button):focus-visible {
-    outline: 2px solid #0a84ff;
-    outline-offset: 2px;
-}
-
-button:hover {
-    filter: brightness(0.95);
-}
-
-:disabled,
-[aria-disabled="true"] {
-    opacity: .6;
-    cursor: not-allowed;
-}
-
-/* Подсветка ошибочных полей (установите aria-invalid="true") */
-[aria-invalid="true"] {
-    border-color: #b00020;
-}
-
-dialog {
-    padding: 1.25rem;
-    border: none;
-    border-radius: 12px;
-}
-
-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5);
-}
-
-/* Стили для сообщения об успешной отправке */
-#successMessage {
-    background: #d4edda;
-    color: #155724;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #c3e6cb;
-    margin: 1rem 0;
-    text-align: center;
-    font-weight: bold;
-    animation: fadeIn 0.5s ease-in;
-}
-
-/* Анимация появления */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(-10px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-/* Адаптивность для модального окна */
-dialog {
-    max-width: 90vw;
-    width: 500px;
-}
-
-/* Улучшенные стили для кнопок в форме */
-.form-actions {
-    display: flex;
-    gap: .5rem;
-    margin-top: 1rem;
-}
-
-.form-actions button {
-    flex: 1;
-    max-width: none;
-}
-
-:root {
-    /* Палитра */
-    --color-bg: #ffffff;
-    --color-fg: #0b0b0b;
-    --color-muted: #666;
-    --color-primary: #0a84ff;
-    --color-danger: #b00020;
-    /* Типографика и размеры */
-    --font-body: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-    --space-1: 4px;
-    --space-2: 8px;
-    --space-3: 16px;
-    --space-4: 24px;
-    --space: 5:40px;
-    /* Скругления и тени */
-    --radius: 12px;
-    --shadow: 0 1px 2px rgba(0, 0, 0, .08), 0 8px 24px rgba(0, 0, 0, .08);
-}
-
-:root {
-    color-scheme: light;
-}
-
-/* Светлые скроллбары/контролы по 
-умолчанию */
-body.theme-dark {
-    color-scheme: dark;
-}
-
-/* Тёмные — при активной теме */
-
-/* Тёмная тема: переопределяем только значения токенов */
-body.theme-dark {
-    --color-bg: #0b0b0b;
-    --color-fg: #f5f5f5;
-    --color-muted: #aaa;
-    --color-primary: #6aa2ff;
-}
-
-/* ===== HEADER & NAVIGATION (БЭМ) ===== */
+/* HEADER & NAVIGATION */
 .site-header {
     display: flex;
     flex-wrap: wrap;
@@ -244,7 +94,6 @@ body.theme-dark {
     outline: none;
 }
 
-/* Навигация */
 .site-nav__list {
     display: flex;
     gap: var(--space-2);
@@ -267,7 +116,6 @@ body.theme-dark {
     border: 1px solid transparent;
 }
 
-/* Состояния наведения и фокуса */
 .site-nav__link:hover {
     color: var(--color-primary);
     background-color: color-mix(in srgb, var(--color-primary) 10%, transparent);
@@ -279,32 +127,13 @@ body.theme-dark {
     color: var(--color-primary);
 }
 
-/* Активный пункт меню (aria-current="page") */
 .site-nav__link[aria-current="page"] {
     color: var(--color-primary);
     background-color: color-mix(in srgb, var(--color-primary) 15%, transparent);
     font-weight: 600;
 }
 
-/* Адаптивность для мобильных */
-@media (max-width: 600px) {
-    .site-header {
-        flex-direction: column;
-        gap: var(--space-3);
-    }
-
-    .site-nav__list {
-        flex-direction: column;
-        width: 100%;
-        gap: var(--space-1);
-    }
-
-    .site-nav__link {
-        text-align: center;
-    }
-}
-
-/* ===== BREADCRUMBS (Хлебные крошки) ===== */
+/* BREADCRUMBS */
 .breadcrumbs {
     padding: var(--space-3) 0;
     margin-bottom: var(--space-4);
@@ -349,14 +178,128 @@ body.theme-dark {
     color: var(--color-muted);
 }
 
-/* ===== SMOOTH SCROLL & TARGET STYLES ===== */
-html {
-    scroll-behavior: smooth;
-    scroll-padding-top: 2rem;
-    /* Отступ для фиксированного header */
+/* FORMS */
+label {
+    display: block;
+    margin: 0.5rem 0 0.25rem;
 }
 
-/* Стиль для целевого элемента при якорной навигации */
+input,
+select,
+textarea,
+button {
+    width: 100%;
+    max-width: 480px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #c8c8c8;
+    border-radius: 8px;
+    background: #fff;
+}
+
+button,
+[type="submit"] {
+    background: var(--color-primary);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+/* Focus states */
+:where(input, select, textarea, button):focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 2px;
+}
+
+button:hover {
+    filter: brightness(0.95);
+}
+
+:disabled,
+[aria-disabled="true"] {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+[aria-invalid="true"] {
+    border-color: var(--color-danger);
+}
+
+.form-actions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 1rem;
+}
+
+.form-actions button {
+    flex: 1;
+    max-width: none;
+}
+
+/* MODAL/DIALOG */
+dialog {
+    padding: 1.25rem;
+    border: none;
+    border-radius: 12px;
+    max-width: 90vw;
+    width: 500px;
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* SUCCESS MESSAGE */
+#successMessage {
+    background: #d4edda;
+    color: #155724;
+    padding: 1rem;
+    border-radius: 8px;
+    border: 1px solid #c3e6cb;
+    margin: 1rem 0;
+    text-align: center;
+    font-weight: bold;
+    animation: fadeIn 0.5s ease-in;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Герой-секция: затемняющий градиент поверх фонового изображения */
+.hero {
+    background:
+        linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.15)),
+        url("img/hero-1920.jpg") center/cover no-repeat;
+    color: #fff;
+    padding: clamp(2rem, 6vw, 6rem) 1rem;
+    border-radius: var(--radius);
+    margin-bottom: var(--space-4);
+}
+
+/* CONTAINER */
+.container {
+    width: min(100% - 2 * var(--space-4), 1120px);
+    margin-inline: auto;
+}
+
+/* SECTIONS */
+.section {
+    padding-block: var(--space-5);
+}
+
+.section__title {
+    margin: 0 0 var(--space-3);
+}
+
+/* TARGET ANIMATION */
 section:target {
     animation: target-fade 1.5s ease;
     background-color: color-mix(in srgb, var(--color-primary) 5%, transparent);
@@ -373,7 +316,7 @@ section:target {
     }
 }
 
-/* Стили для якорных ссылок внутри страницы */
+/* PAGE LINKS */
 .page-link {
     display: inline-block;
     margin-top: var(--space-2);
@@ -390,4 +333,31 @@ section:target {
     background-color: color-mix(in srgb, var(--color-primary) 20%, black);
     outline: none;
     transform: translateY(-1px);
+}
+
+/* DARK THEME */
+body.theme-dark {
+    color-scheme: dark;
+    --color-bg: #0b0b0bea;
+    --color-fg: #f5f5f5;
+    --color-muted: #aaa;
+    --color-primary: #6aa2ff;
+}
+
+/* RESPONSIVE */
+@media (max-width: 600px) {
+    .site-header {
+        flex-direction: column;
+        gap: var(--space-3);
+    }
+
+    .site-nav__list {
+        flex-direction: column;
+        width: 100%;
+        gap: var(--space-1);
+    }
+
+    .site-nav__link {
+        text-align: center;
+    }
 }

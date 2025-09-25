@@ -1,58 +1,86 @@
-<!DOCTYPE html> 
-<html lang="ru"> 
-<head> 
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
     <link rel="stylesheet" href="styles.css">
-    <meta property="og:type" content="website"> 
-    <meta property="og:title" content="Контакты"> 
-    <meta property="og:description" content="Здесь расположены все способы связи с нашей коммандой"> 
-    <meta property="og:image" content="https://cdn.icon-icons.com/icons2/1271/PNG/512/1497554805-social-media05_84877.png"> 
-    <meta charset="UTF-8"> 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <link rel="icon" href="assets/favicon.ico" type="image/x-icon"> 
-    <title>Контакты</title> 
-    <meta name="description" content="Контакты для связи с нами"> 
-</head> 
-<body> 
-     <header class = "site-header">
-        <a class = "site-header__logo" href="assets/favicon.ico">Самый современный сайт</a>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Контакты">
+    <meta property="og:description" content="Здесь расположены все способы связи с нашей коммандой">
+    <meta property="og:image"
+        content="https://cdn.icon-icons.com/icons2/1271/PNG/512/1497554805-social-media05_84877.png">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
+    <title>Контакты</title>
+    <meta name="description" content="Контакты для связи с нами">
+</head>
+
+<body>
+    <header class="site-header">
+        <a class="site-header__logo" href="assets/favicon.ico">Самый современный сайт</a>
+        <button class="theme-toggle" type="button" aria-pressed="false">Тема</button>
+        <script defer>
+            const KEY = 'theme', btn = document.querySelector('.theme-toggle');
+            const prefersDark = matchMedia('(prefers-color-scheme: dark)').matches;
+            // Автовыбор: системная тема или сохранённый выбор пользователя 
+            if (localStorage.getItem(KEY) === 'dark' || (!localStorage.getItem(KEY) &&
+                prefersDark)) {
+                document.body.classList.add('theme-dark');
+                btn?.setAttribute('aria-pressed', 'true');
+            }
+            // Переключение по кнопке с сохранением в localStorage 
+            btn?.addEventListener('click', () => {
+                const isDark = document.body.classList.toggle('theme-dark');
+                btn.setAttribute('aria-pressed', String(isDark));
+                localStorage.setItem(KEY, isDark ? 'dark' : 'light');
+            }); 
+        </script>
         <!-- Главное меню навигации -->
-        <nav class = "site-nav">
-            <ul class = "site-nav__list">
-                <li class = "site-nav__item" ><a class = "site-nav_link" href="index.html">Главная</a></li>
-                <li class = "site-nav__item" ><a class = "site-nav_link" href="about.html" >О нас</a></li>
-                <li class = "site-nav__item" ><a class = "site-nav_link" href="contacts.html" aria-current="page">Контакты</a></li>
-            </ul> 
+        <nav class="site-nav">
+            <ul class="site-nav__list">
+                <li class="site-nav__item"><a class="site-nav__link" href="index.html">Главная</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="about.html">О нас</a></li>
+                <li class="site-nav__item"><a class="site-nav__link" href="contacts.html"
+                        aria-current="page">Контакты</a></li>
+            </ul>
         </nav>
     </header>
     <main>
-        <!-- Простые "хлебные крошки" --> 
+         <!-- Простые "хлебные крошки" -->
         <nav class="breadcrumbs" aria-label="Хлебные крошки">
-        <ul class="breadcrumbs__list">
-            <li class="breadcrumbs__item">
-                <a class="breadcrumbs__link" href="index.html">Главная</a>
-            </li>
-            <li class="breadcrumbs__item">
-                <span class="breadcrumbs__current">Контакты</span>
-            </li>
-        </ul>
-    </nav>
-        <h1>Способы связи</h1> 
-        <section> 
-            <h2>Telegram</h2> 
-            <p>@SoBeastpro</p> 
-        </section> 
-        <section> 
-            <h2>Электронная почта</h2> 
-            <p>70vlad02@gmail.com</p> 
-        </section> 
-        <section> 
-            <h2>Вконтакте</h2> 
-            <p>@ido802007</p> 
-        </section> 
-    </main> 
-    <footer> 
-        <p>&copy; 2025 Самый лучший сайт. Все права защищены.</p> 
-        <p>Телефон: +7 (960) 319-60-00</p> 
-    </footer> 
-</body> 
+            <ul class="breadcrumbs__list">
+                <li class="breadcrumbs__item">
+                    <a class="breadcrumbs__link" href="index.html">Главная</a>
+                </li>
+                <li class="breadcrumbs__item">
+                    <span class="breadcrumbs__current">Контакты</span>
+                </li>
+            </ul>
+        </nav>
+        <section class="hero">
+            <div class="container">
+                <h1>Контакты</h1>
+                <p>Свяжитесь с нами удобным для вас способом</p>
+            </div>
+        </section>
+        <h1>Способы связи</h1>
+        <section>
+            <h2>Telegram</h2>
+            <p>@SoBeastpro</p>
+        </section>
+        <section>
+            <h2>Электронная почта</h2>
+            <p>70vlad02@gmail.com</p>
+        </section>
+        <section>
+            <h2>Вконтакте</h2>
+            <p>@ido802007</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 Самый лучший сайт. Все права защищены.</p>
+        <p>Телефон: +7 (960) 319-60-00</p>
+    </footer>
+</body>
+
 </html>
